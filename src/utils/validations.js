@@ -1,21 +1,18 @@
 import { compare, genSalt, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { env } from '../config/env';
 
-class ValidationUtils {
-  static async validatePassword(enteredPassword, storedPassword) {
-    return await compare(enteredPassword, storedPassword);
-  }
-
-  static async hashPassword(password) {
-    const salt = await genSalt(10);
-    return hash(password, salt);
-  }
-
-  static generateToken(payload, expiresIn = '1h') {
-    const secret = process.env.JWT_SECRET || 'default_secret_key';
-    return sign(payload, secret, { expiresIn });
-  }
+export async function validatePassword(enteredPassword, storedPassword) {
+  return await compare(enteredPassword, storedPassword);
 }
 
+export async function hashPassword(password) {
+  const salt = await genSalt(10);
+  return hash(password, salt);
+}
 
-export default ValidationUtils;
+export function generateToken(payload, expiresIn = '1h') {
+  const secret = env.jwtSecret || 'mi_clave_super_secreta';
+  const user = payload;
+  return sign( { sub: user.id, email: user.email }, secret, { expiresIn });
+}

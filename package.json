@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/app.js"
+    "dev": "nodemon --exec babel-node ./src/app.js",
+    "build": "babel src --out-dir dist",
+    "start": "node ./dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.1",
     "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
