@@ -1,8 +1,11 @@
 import { connect } from 'mongoose';
+import { env } from './env';
+
+console.log('Conectando a MongoDB con URI:', env.mongoUri || 'mongodb://localhost:27017/mydb');
 
 const connectMongo = async () => {
   try {
-    await connect(process.env.MONGO_URI || 'mongodb://localhost:27017/mydb', {
+    await connect( env.mongoUri|| 'mongodb://localhost:27017/mydb', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -13,4 +16,4 @@ const connectMongo = async () => {
   }
 };
 
-export default { connectMongo };
+export default connectMongo;
