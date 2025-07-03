@@ -23,10 +23,10 @@ connectMongo();
 setupSwagger(app);
 
 // Usando las rutas
+app.use('/api/v1/users', userRoutes);
 app.use('/', (req, res) => {
   res.send('API is running');
 });
-app.use('/api/v1/users', userRoutes);
 
 
 app.use((err, req, res, next) => {
