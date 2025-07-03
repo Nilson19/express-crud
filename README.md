@@ -37,11 +37,11 @@ Este proyecto es una API REST simple para la gestión de usuarios, desarrollada 
 2. Intalacion de dependencias
   ```bash
   npm install
-```
-3. Ejecucion
-   ```bash
-   npm run dev
   ```
-```
+3. Ejecucion
+  ```bash
+  npm run dev
+  ```
+
 ## Documentacion 
 - Puedes acceder a la ruta /docs
