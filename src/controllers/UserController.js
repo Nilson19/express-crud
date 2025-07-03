@@ -9,6 +9,15 @@ export async function register(req, res, next) {
   }
 }
 
+export async function getAll(req, res, next) {
+  try {
+    const users = await UserService.getAllUsers();
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function getById(req, res, next) {
   try {
     const user = await UserService.getUserById(req.params.id);

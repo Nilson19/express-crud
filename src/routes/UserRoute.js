@@ -163,4 +163,18 @@ router.delete(
  */
 router.post('/login', UserController.validateUserCredentials);
 
+/**
+ * @swagger
+ * /api/v1/users:
+ *   get:
+ *     summary: Obtener todos los usuarios
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de usuarios
+ */
+router.get('/', passport.authenticate('jwt', { session: false }), UserController.getAll);
+
 export default router;
