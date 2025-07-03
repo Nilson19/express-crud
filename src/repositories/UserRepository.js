@@ -14,6 +14,19 @@ export const UserRepository = {
         }
     },
 
+    async findAll() {
+        try {
+            const users = await UserModel.find().lean();
+            return users;
+        } catch (err) {
+            if (err instanceof Error) {
+                console.error('Error', err);
+                throw new AppError('Error al buscar usuarios: ' + err.message);
+            }
+            throw new AppError('Error desconocido al buscar usuarios');
+        }
+    },
+
     async findByEmail(email) {
         try {
             const user = await UserModel.findOne({ email }).lean();

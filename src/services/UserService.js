@@ -18,6 +18,14 @@ export const UserService = {
     return userId;
   },
 
+  async getAllUsers() {
+    const users = await UserRepository.findAll();
+    if (!users || users.length === 0) {
+      throw new AppError('No se encontraron usuarios', 404);
+    }
+    return users;
+  },
+
   async updateUser(id, data) {
     let dataToUpdate = { ...data };
     if (data.password) {
